@@ -31,6 +31,36 @@ class AdminController extends Controller
 
     }
 
+    public function register(Request $request){
+        $request->validate([
+            'name' => 'required|max:120',
+            'email' => 'required|email|unique:admins,email',
+            'password' => 'required|confirmed',
+            'phone_no' => 'required',
+        ]);
+
+        $admin = Admin::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'phone_no' => $request->phone_no,
+        ]);
+
+        $token = $admin->createToken($request->email)->plainTextToken;
+
+        return response([
+            'user' => $admin,
+            'token' => $token
+        ], 201);
+    }
+
+    public function logout(){
+        auth()->user()->tokens()->delete();
+        return response([
+            'message' => 'Successfully Logged Out !!'
+        ]);
+    }
+
 
     /**
      * Display a listing of the resource.
@@ -39,7 +69,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        $data= Admin::all();
+        return $data;
     }
 
     /**

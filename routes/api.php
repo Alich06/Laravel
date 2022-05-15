@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('admin_login',[AdminController::class,'login']);
 Route::post('admin_register',[AdminController::class,'register']);
 Route::post('teacher_login',[TeacherController::class,'login']);
+Route::post('student_login',[StudentController::class,'login']);
 
 
 
@@ -30,6 +32,12 @@ Route::middleware(['auth:sanctum'])->group(function (){
     Route::delete('teachers/{teacher}',[TeacherController::class,'destroy']);
     Route::post('teacher_logout',[TeacherController::class,'logout']);
     Route::post('admin_logout',[AdminController::class,'logout']);
+    Route::get('teachers',[StudentController::class,'index']);
+    Route::post('teachers',[StudentController::class,'store']);
+    Route::get('students/{students}',[StudentController::class,'show']);
+    Route::put('students/{students}',[StudentController::class,'update']);
+    Route::delete('students/{students}',[StudentController::class,'destroy']);
+    Route::post('student_logout',[StudentController::class,'logout']);
 });
 
 

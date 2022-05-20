@@ -16,13 +16,13 @@ class UserSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'first_name'  => 'Ali',
-            'last_name'  => 'Masood',
-            'father_name'  => 'Masood Ahmad',
-            'email' => 'ali@gmail.com',
+            'first_name'  => 'Nasir',
+            'last_name'  => 'Hussain',
+            'father_name'  => 'Hussain Ahmad',
+            'email' => 'nasir@gmail.com',
             'password' => Hash::make('12345678'),
             'phone_no' => '03414144925',
-            'role_name' => 'Admin',
+            'role_name' => 'Teacher',
             'age' => '22',
             'gender' => 'Male',
             'picture' => '1012152.png',

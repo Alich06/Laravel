@@ -82,4 +82,22 @@ class UserController extends Controller
         ]);
     }
 
+    public function index($role_name){
+        $data= User::where('role_name',$role_name)->first();
+        return response()->json($data,201);
+    }
+
+    public function show($role_name , User $user)
+    {
+        $data= User::find($user)->where('role_name',$role_name)->first();
+        return response()->json($data,201);
+    }
+    public function destroy($role_name,User $user)
+    {
+        $user->where('role_name',$role_name)->delete();
+        return response()->json([
+            'message'=> 'Teacher deleted Successfully',
+        ],202);
+    }
+
 }

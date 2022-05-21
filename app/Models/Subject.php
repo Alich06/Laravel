@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Subject extends Model
 {
     use HasFactory;
+    protected $fillable =[
+        'subject_name','department_id'
+    ];
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class,'department_id','id');
+    }
+    public function getTime()
+    {
+        return $this->hasOne(TimeTable::class);
+    }
 }

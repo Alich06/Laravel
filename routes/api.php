@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\StudentController;
@@ -17,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+//Route::get('dataa',[\App\Http\Controllers\MarkController::class,'show']);
+
 Route::post('login',[UserController::class,'login']);
 Route::post('register',[UserController::class,'register']);
 /*Route::post('teacher_login',[TeacherController::class,'login']);
@@ -25,11 +28,20 @@ Route::post('student_login',[StudentController::class,'login']);*/
 
 
 
+
 Route::middleware(['auth:sanctum'])->group(function (){
+    Route::get('teacher_count',[AdminController::class,'getTeacherNo']);
+    Route::get('student_count',[AdminController::class,'getStudentNo']);
     Route::get('users/{role_name}',[UserController::class,'index']);
     Route::get('users/{role_name}/{user}',[UserController::class,'show']);
+    Route::put('users/{user}',[UserController::class,'update']);
     Route::delete('users/{role_name}/{user}',[UserController::class,'destroy']);
     Route::post('logout',[UserController::class,'logout']);
+    Route::get('department',[DepartmentController::class,'index']);
+    Route::post('department',[DepartmentController::class,'store']);
+    Route::get('department/{department}',[DepartmentController::class,'show']);
+    Route::put('department/{department}',[DepartmentController::class,'update']);
+    Route::delete('department/{department}',[DepartmentController::class,'destroy']);
 });
 
 

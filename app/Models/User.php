@@ -26,4 +26,21 @@ class User extends Model
         'password',
         'remember_token',
     ];
+
+    public function teacher()
+    {
+        return $this->hasOne(TimeTable::class);
+    }
+    public function student()
+    {
+        return $this->hasOne(Attendance::class);
+    }
+    public function enrollment()
+    {
+        return $this->hasOne(Enrollment::class);
+    }
+    public function marks()
+    {
+        return $this->hasOne(Mark::class);
+    }
 }

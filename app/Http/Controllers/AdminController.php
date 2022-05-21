@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -137,5 +138,17 @@ class AdminController extends Controller
     public function destroy(Admin $admin)
     {
         //
+    }
+
+
+    Public function getTeacherNo()
+    {
+        $data= User::where('role_name','teacher')->count();
+        return response()->json($data);
+    }
+    Public function getStudentNo()
+    {
+        $data= User::where('role_name','student')->count();
+        return response()->json($data);
     }
 }

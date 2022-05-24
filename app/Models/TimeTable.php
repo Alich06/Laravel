@@ -14,13 +14,13 @@ class TimeTable extends Model
         'subject_id',
     ];
 
-    public function user()
+    public function teacher()
     {
         return $this->belongsTo(User::class,'teacher_id')->where('role_name','teacher');
     }
     public function subject()
     {
-        return $this->belongsTo(Subject::class,'subject_id');
+        return $this->belongsToMany(Subject::class,'subject_id');
     }
     public function enrollment()
     {

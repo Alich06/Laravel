@@ -3,10 +3,13 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\TimeTableController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -25,9 +28,16 @@ Route::post('register',[UserController::class,'register']);
 /*Route::post('teacher_login',[TeacherController::class,'login']);
 Route::post('student_login',[StudentController::class,'login']);*/
 
+Route::post('add_course/{department}',[SubjectController::class,'create']);
+Route::get('show_course/{department}',[SubjectController::class,'show']);
+Route::get('show_course_department/{department}',[SubjectController::class,'showWithDepartment']);
+Route::get('show_department/{subject}',[DepartmentController::class,'showCourses']);
+Route::delete('subject/{subject}',[SubjectController::class,'destroy']);
 
 
+Route::post('create_class/users/{user}/subjects/{subject}',[TimeTableController::class,'createClass']);
 
+Route::get('teacher_count',[AdminController::class,'getTeacherNo']);
 
 Route::middleware(['auth:sanctum'])->group(function (){
     Route::get('teacher_count',[AdminController::class,'getTeacherNo']);
@@ -61,3 +71,6 @@ Route::middleware(['auth:sanctum'])->group(function (){
  Route::put('students/{students}',[StudentController::class,'update']);
  Route::delete('students/{students}',[StudentController::class,'destroy']);
  Route::post('student_logout',[StudentController::class,'logout']);*/
+
+
+

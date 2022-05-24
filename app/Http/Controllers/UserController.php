@@ -65,7 +65,7 @@ class UserController extends Controller
             'phone_no' => $request->phone_no,
             'age' => $request->age,
             'gender' => $request->gender,
-            'image' => $image_name,
+            'picture' => $image_name,
         ]);
 
         $token = $user->createToken($request->email)->plainTextToken;
@@ -84,7 +84,7 @@ class UserController extends Controller
     }
 
     public function index($role_name){
-        $data= User::where('role_name',$role_name)->first();
+        $data= User::where('role_name',$role_name)->get();
         return response()->json($data,201);
     }
 

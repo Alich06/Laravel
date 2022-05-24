@@ -27,14 +27,6 @@ class User extends Model
         'remember_token',
     ];
 
-    public function teacher()
-    {
-        return $this->hasOne(TimeTable::class);
-    }
-    public function student()
-    {
-        return $this->hasOne(Attendance::class);
-    }
     public function enrollment()
     {
         return $this->hasOne(Enrollment::class);
@@ -43,4 +35,16 @@ class User extends Model
     {
         return $this->hasOne(Mark::class);
     }
+    public function subjects()
+    {
+        return $this->belongsToMany(Subject::class,'time_tables','teacher_id');
+    }
+
+
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new \App\Notifications\MailResetPasswordNotification($token));
+    }
+
 }

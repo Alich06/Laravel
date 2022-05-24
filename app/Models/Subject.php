@@ -16,8 +16,9 @@ class Subject extends Model
     {
         return $this->belongsTo(Department::class,'department_id','id');
     }
-    public function getTime()
+    
+    public function teachers()
     {
-        return $this->hasOne(TimeTable::class);
+        return $this->belongsToMany(User::class)->where('role_name','teacher');
     }
 }

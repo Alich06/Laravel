@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Department;
+use App\Models\Subject;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
@@ -60,5 +61,10 @@ class DepartmentController extends Controller
         return response()->json([
             'message'=> 'Department deleted Successfully',
         ],202);
+    }
+    public function showCourses(Subject $subject)
+    {
+        $data= $subject->department;
+        return response()->json($data,201);
     }
 }

@@ -45,6 +45,7 @@ Route::middleware(['auth:sanctum'])->group(function (){
     Route::get('users/{role_name}',[UserController::class,'index']);
     Route::get('users/{role_name}/{user}',[UserController::class,'show']);
     Route::put('users/{user}',[UserController::class,'update']);
+    Route::get('users/{role_name}/{filename}',[UserController::class,'image']);
     Route::delete('users/{role_name}/{user}',[UserController::class,'destroy']);
     Route::post('logout',[UserController::class,'logout']);
     Route::get('department',[DepartmentController::class,'index']);

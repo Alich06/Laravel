@@ -87,7 +87,11 @@ class UserController extends Controller
         $data= User::where('role_name',$role_name)->get();
         return response()->json($data,201);
     }
-
+    public function image($image_name)
+    {
+        $path = public_path().'/uploads/images/'.$image_name;
+        return Response::download($path);
+    }
     public function show($role_name , User $user)
     {
         $data= User::find($user)->where('role_name',$role_name)->first();

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -86,11 +87,6 @@ class UserController extends Controller
     public function index($role_name){
         $data= User::where('role_name',$role_name)->get();
         return response()->json($data,201);
-    }
-    public function image($image_name)
-    {
-        $path = public_path().'/uploads/images/'.$image_name;
-        return Response::download($path);
     }
     public function show($role_name , User $user)
     {

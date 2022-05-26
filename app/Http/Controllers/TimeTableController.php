@@ -16,8 +16,8 @@ class TimeTableController extends Controller
         //return $subject;
 
         $user->subjects()->attach($subject,[
-            'created_at'=>'2022-05-21 16:48:16',
-            'updated_at'=>'2022-05-21 16:48:16',
+            'created_at'=>now()->timestamp,
+            'updated_at'=>now()->timestamp,
         ]);
         return response()->json($subject);
     }

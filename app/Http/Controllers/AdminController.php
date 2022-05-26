@@ -151,4 +151,9 @@ class AdminController extends Controller
         $data= User::where('role_name','student')->count();
         return response()->json($data);
     }
+    Public function getAdminNo()
+    {
+        $data= User::where('role_name','admin')->count();
+        return response()->json($data);
+    }
 }

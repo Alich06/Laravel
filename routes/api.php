@@ -28,11 +28,7 @@ Route::post('register',[UserController::class,'register']);
 /*Route::post('teacher_login',[TeacherController::class,'login']);
 Route::post('student_login',[StudentController::class,'login']);*/
 
-Route::post('add_course/{department}',[SubjectController::class,'create']);
-Route::get('show_course/{department}',[SubjectController::class,'show']);
-Route::get('show_course_department/{department}',[SubjectController::class,'showWithDepartment']);
-Route::get('show_department/{subject}',[DepartmentController::class,'showCourses']);
-Route::delete('subject/{subject}',[SubjectController::class,'destroy']);
+
 
 
 Route::post('create_class/users/{user}/subjects/{subject}',[TimeTableController::class,'createClass']);
@@ -53,6 +49,11 @@ Route::middleware(['auth:sanctum'])->group(function (){
     Route::get('department/{department}',[DepartmentController::class,'show']);
     Route::put('department/{department}',[DepartmentController::class,'update']);
     Route::delete('department/{department}',[DepartmentController::class,'destroy']);
+    Route::post('add_course/{department}',[SubjectController::class,'create']);
+    Route::get('show_course/{department}',[SubjectController::class,'show']);
+    Route::get('show_course_department/{department}',[SubjectController::class,'showWithDepartment']);
+    Route::get('show_department/{subject}',[DepartmentController::class,'showCourses']);
+    Route::delete('subject/{subject}',[SubjectController::class,'destroy']);
 });
 
 

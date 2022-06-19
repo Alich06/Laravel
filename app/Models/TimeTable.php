@@ -34,4 +34,8 @@ class TimeTable extends Model
     {
         return $this->hasOne(Mark::class);
     }
+    public function students()
+    {
+     return $this->belongsToMany(User::class,'attendances','student_id','id');
+    }
 }

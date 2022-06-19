@@ -18,6 +18,7 @@ class CreateAttendancesTable extends Migration
             $table->boolean('attendance_status');
             $table->foreignId('student_id')->references('id')->on('users');
             $table->foreignId('class_id')->references('id')->on('time_tables');
+            $table->timestamp();
         });
     }
 

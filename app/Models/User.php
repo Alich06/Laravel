@@ -40,7 +40,10 @@ class User extends Model
         return $this->belongsToMany(Subject::class,'time_tables','teacher_id');
     }
 
-
+    public function attendances()
+    {
+        return $this->belongsToMany(TimeTable::class,'attendances');
+    }
 
     public function sendPasswordResetNotification($token)
     {

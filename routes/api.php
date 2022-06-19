@@ -5,6 +5,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TimeTableController;
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Http\Request;
@@ -35,26 +36,32 @@ Route::post('create_class/users/{user}/subjects/{subject}',[TimeTableController:
 
 Route::get('teacher_count',[AdminController::class,'getTeacherNo']);
 
-Route::middleware(['auth:sanctum'])->group(function (){
-    Route::get('teacher_count',[AdminController::class,'getTeacherNo']);
-    Route::get('student_count',[AdminController::class,'getStudentNo']);
-    Route::get('admin_count',[AdminController::class,'getAdminNo']);
-    Route::get('users/{role_name}',[UserController::class,'index']);
-    Route::get('users/{role_name}/{user}',[UserController::class,'show']);
-    Route::put('users/{user}',[UserController::class,'update']);
-    Route::delete('users/{role_name}/{user}',[UserController::class,'destroy']);
-    Route::post('logout',[UserController::class,'logout']);
-    Route::get('department',[DepartmentController::class,'index']);
-    Route::post('department',[DepartmentController::class,'store']);
-    Route::get('department/{department}',[DepartmentController::class,'show']);
-    Route::put('department/{department}',[DepartmentController::class,'update']);
-    Route::delete('department/{department}',[DepartmentController::class,'destroy']);
-    Route::post('add_course/{department}',[SubjectController::class,'create']);
-    Route::get('show_course/{department}',[SubjectController::class,'show']);
-    Route::get('show_course_department/{department}',[SubjectController::class,'showWithDepartment']);
-    Route::get('show_department/{subject}',[DepartmentController::class,'showCourses']);
-    Route::delete('subject/{subject}',[SubjectController::class,'destroy']);
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('teacher_count', [AdminController::class, 'getTeacherNo']);
+    Route::get('student_count', [AdminController::class, 'getStudentNo']);
+    Route::get('admin_count', [AdminController::class, 'getAdminNo']);
+    Route::get('users/{role_name}', [UserController::class, 'index']);
+    Route::get('users/{role_name}/{user}', [UserController::class, 'show']);
+    Route::put('users/{user}', [UserController::class, 'update']);
+    Route::delete('users/{role_name}/{user}', [UserController::class, 'destroy']);
+    Route::post('logout', [UserController::class, 'logout']);
+    Route::get('department', [DepartmentController::class, 'index']);
+    Route::post('department', [DepartmentController::class, 'store']);
+    Route::get('department/{department}', [DepartmentController::class, 'show']);
+    Route::put('department/{department}', [DepartmentController::class, 'update']);
+    Route::delete('department/{department}', [DepartmentController::class, 'destroy']);
+    Route::post('add_course/{department}', [SubjectController::class, 'create']);
+    Route::get('show_course/{department}', [SubjectController::class, 'show']);
+    Route::get('show_course_department/{department}', [SubjectController::class, 'showWithDepartment']);
+    Route::get('show_department/{subject}', [DepartmentController::class, 'showCourses']);
+    Route::delete('subject/{subject}', [SubjectController::class, 'destroy']);
+    Route::get('get_attendance',[AttendanceController::class,'show']);
+    Route::get('get_attendance/{attendance}',[AttendanceController::class,'view']);
+    Route::post('add_attendance',[AttendanceController::class,'create']);
+    Route::put('update_attendance/{attendance}',[AttendanceController::class,'update']);
+    Route::delete('delete_attendance/{attendance}',[AttendanceController::class,'destroy']);
 });
+
 
 
 /*Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
